@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews | Alansi Car Rental</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+
+        function addReview() {
+
+            const name = document.getElementById("name").value;
+            const review = document.getElementById("review").value;
+
+            if (name === "" || review === "") {
+                alert("Please fill all fields");
+                return;
+            }
+
+            const reviewBox = document.getElementById("reviewList");
+
+            const newReview = document.createElement("p");
+
+            newReview.innerHTML =
+                "<b>" + name + ":</b> " + review;
+
+            reviewBox.appendChild(newReview);
+
+            document.getElementById("name").value = "";
+            document.getElementById("review").value = "";
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container topbar">
+
+            <div class="brand">
+                <img src="images/logo.png" class="logo">
+                <p class="brand-name">Alansi Car Rental</p>
+            </div>
+
+            <nav>
+                <ul class="nav-list">
+
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="review.html" class="active">Reviews</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="review.html">Reviews</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <main class="container">
+
+        <h2 style="text-align:center;">
+            Customer Reviews
+        </h2>
+
+        <form onsubmit="return false;">
+
+            <label>Your Name</label>
+            <input type="text" id="name">
+
+            <label>Your Review</label>
+            <textarea id="review"></textarea>
+
+            <br><br>
+
+            <button onclick="addReview()" class="btn-submit">
+                Add Review
+            </button>
+
+        </form>
+
+        <div id="reviewList">
+
+            <p><b>Ahmed:</b> Excellent service!</p>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

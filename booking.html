@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Car Booking | Alansi Car Rental</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+
+        function calculateTotal() {
+
+            const pricePerDay =
+                parseInt(document.getElementById("car").value);
+
+            const start =
+                document.getElementById("startDate").value;
+
+            const end =
+                document.getElementById("endDate").value;
+
+            if (start === "" || end === "")
+                return;
+
+            const startDate = new Date(start);
+            const endDate = new Date(end);
+
+            const diffTime =
+                endDate - startDate;
+
+            const days =
+                diffTime / (1000 * 3600 * 24);
+
+            if (days <= 0) {
+
+                alert("End date must be after start date");
+
+                return;
+
+            }
+
+            const total =
+                days * pricePerDay;
+
+            document.getElementById("days").value =
+                days;
+
+            document.getElementById("total").value =
+                total + " QAR";
+
+        }
+
+        function validateBooking() {
+
+            const name =
+                document.getElementById("name").value;
+
+            if (name === "") {
+
+                alert("Name required");
+
+                return false;
+
+            }
+
+            alert("Booking Confirmed!");
+
+            return true;
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <div class="container topbar">
+
+            <div class="brand">
+
+                <img src="images/logo.png" class="logo">
+
+                <p class="brand-name">
+                    Alansi Car Rental
+                </p>
+
+            </div>
+
+            <nav>
+                <ul class="nav-list">
+
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="booking.html" class="active">Booking</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="review.html">Reviews</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <main class="container">
+
+        <h2 style="text-align:center;">
+            Book Your Car
+        </h2>
+
+        <form onsubmit="return validateBooking()">
+
+            <label>Customer Name</label>
+            <input type="text" id="name">
+
+            <label>Select Car</label>
+
+            <select id="car" onchange="calculateTotal()">
+
+                <option value="180">
+                    Toyota Camry — 180 QAR/day
+                </option>
+
+                <option value="420">
+                    Nissan Patrol — 420 QAR/day
+                </option>
+
+                <option value="150">
+                    Toyota Corolla — 150 QAR/day
+                </option>
+
+                <option value="240">
+                    Hyundai Tucson — 240 QAR/day
+                </option>
+
+            </select>
+
+            <label>Start Date</label>
+
+            <input type="date" id="startDate" onchange="calculateTotal()">
+
+            <label>End Date</label>
+
+            <input type="date" id="endDate" onchange="calculateTotal()">
+
+            <label>Number of Days</label>
+
+            <input type="text" id="days" readonly>
+
+            <label>Total Price</label>
+
+            <input type="text" id="total" readonly>
+
+            <br>
+
+            <button class="btn-submit">
+
+                Confirm Booking
+
+            </button>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>

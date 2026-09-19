@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <script>
+
+        function calculateAge() {
+            const dob = document.getElementById("dob").value;
+            if (!dob) return;
+
+            const birthDate = new Date(dob);
+            const today = new Date();
+
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            document.getElementById("age").value = age;
+        }
+
+        function validateForm() {
+
+            let error = "";
+
+            const fullName = document.getElementById("fullName").value.trim();
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            const email = document.getElementById("email").value;
+            const confirmEmail = document.getElementById("confirmEmail").value;
+
+            const phone = document.getElementById("phone").value;
+            const dob = document.getElementById("dob").value;
+            const age = parseInt(document.getElementById("age").value);
+
+            const building = document.getElementById("building").value.trim();
+            const street = document.getElementById("street").value.trim();
+
+            if (!fullName || !username || !password || !confirmPassword ||
+                !email || !confirmEmail || !phone || !dob || !age ||
+                !building || !street) {
+
+                error += "All fields are required.\n";
+            }
+
+            if (password !== confirmPassword) {
+                error += "Passwords do not match.\n";
+            }
+
+            if (password.length < 6) {
+                error += "Password must be at least 6 characters.\n";
+            }
+
+            if (email !== confirmEmail) {
+                error += "Emails do not match.\n";
+            }
+
+            const phonePattern = /^\+974\d{8}$/;
+            if (!phonePattern.test(phone)) {
+                error += "Phone must be +974XXXXXXXX\n";
+            }
+
+            if (age < 18 || age > 100) {
+                error += "Age must be between 18 and 100.\n";
+            }
+
+            const birthDate = new Date(dob);
+            const today = new Date();
+
+            let calculatedAge = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                calculatedAge--;
+            }
+
+            if (calculatedAge !== age) {
+                error += "Age must match Date of Birth.\n";
+            }
+
+            if (error !== "") {
+                alert(error);
+                return false;
+            }
+
+            return true;
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container topbar">
+
+            <div class="brand">
+                <img src="/images/logo.png" class="logo">
+                <div>
+                    <p class="brand-name">Alansi Car Rental</p>
+                </div>
+            </div>
+
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="/home.html">Home</a></li>
+                    <li><a href="/products.html">Products</a></li>
+                    <li><a href="/login.html">Login</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="review.html">Reviews</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <form action="https://sit.udst.edu.qa/processform.php" method="POST" onsubmit="return validateForm()">
+
+            <fieldset>
+                <legend>Personal Information</legend>
+
+                <label>Full Name</label>
+                <input type="text" id="fullName" name="fullName">
+
+                <label>Username</label>
+                <input type="text" id="username" name="username">
+
+                <label>Password</label>
+                <input type="password" id="password" name="password">
+
+                <label>Confirm Password</label>
+                <input type="password" id="confirmPassword">
+
+                <label>Email</label>
+                <input type="text" id="email">
+
+                <label>Confirm Email</label>
+                <input type="text" id="confirmEmail">
+
+                <label>Phone</label>
+                <input type="text" id="phone" value="+974">
+
+                <label>Date of Birth</label>
+                <input type="date" id="dob" onchange="calculateAge()">
+
+                <label>Age</label>
+                <input type="number" id="age">
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Shipping Address</legend>
+
+                <label>Building</label>
+                <input type="text" id="building">
+
+                <label>Street</label>
+                <input type="text" id="street">
+
+                <label>City</label>
+                <select id="city">
+                    <option>Doha</option>
+                    <option>Al Rayyan</option>
+                    <option>Al Wakrah</option>
+                    <option>Lusail</option>
+                </select>
+
+                <label>
+                    <input type="checkbox"> Subscribe to newsletter
+                </label>
+
+            </fieldset>
+
+            <div style="text-align:center;">
+                <button type="submit" class="btn-submit">Submit</button>
+                <button type="reset" class="btn-reset">Reset</button>
+            </div>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>

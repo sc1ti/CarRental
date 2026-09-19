@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | Alansi Car Rental</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+
+        function toggleFAQ(id) {
+
+            const answer = document.getElementById(id);
+
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+            }
+            else {
+                answer.style.display = "block";
+            }
+
+        }
+
+    </script>
+
+
+
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container topbar">
+
+            <div class="brand">
+                <img src="images/logo.png" class="logo">
+                <p class="brand-name">Alansi Car Rental</p>
+            </div>
+
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="faq.html" class="active">FAQ</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="review.html">Reviews</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <main class="container">
+
+        <h2 style="text-align:center;">Frequently Asked Questions</h2>
+
+        <div class="faq-item" onclick="toggleFAQ('q1')">
+            <b>What documents are required to rent a car?</b>
+
+            <div class="faq-answer" id="q1">
+                You need a valid driving license and ID card.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ('q2')">
+            <b>What is the minimum rental age?</b>
+
+            <div class="faq-answer" id="q2">
+                Minimum age is 18 years old.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ('q3')">
+            <b>Can I cancel my booking?</b>
+
+            <div class="faq-answer" id="q3">
+                Yes, cancellation is allowed before 24 hours.
+            </div>
+        </div>
+
+    </main>
+
+</body>
+
+</html>
